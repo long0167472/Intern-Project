@@ -96,7 +96,7 @@ namespace Backend.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CertificateTypeId = table.Column<int>(type: "int", nullable: false),
+                    CertificateTypeId = table.Column<int>(type: "int", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     Image = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
@@ -108,8 +108,7 @@ namespace Backend.Migrations
                         name: "FK_Certificates_CertificateTypes_CertificateTypeId",
                         column: x => x.CertificateTypeId,
                         principalTable: "CertificateTypes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -138,7 +137,7 @@ namespace Backend.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    SubjectId = table.Column<int>(type: "int", nullable: false),
+                    SubjectId = table.Column<int>(type: "int", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     IsFinished = table.Column<bool>(type: "bit", nullable: false),
                     LinkVideo = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
@@ -151,8 +150,7 @@ namespace Backend.Migrations
                         name: "FK_SubjectDetails_Subjects_SubjectId",
                         column: x => x.SubjectId,
                         principalTable: "Subjects",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -161,7 +159,7 @@ namespace Backend.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DistrictId = table.Column<int>(type: "int", nullable: false),
+                    DistrictId = table.Column<int>(type: "int", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
                 },
                 constraints: table =>
@@ -171,8 +169,7 @@ namespace Backend.Migrations
                         name: "FK_Wards_Districts_DistrictId",
                         column: x => x.DistrictId,
                         principalTable: "Districts",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -181,13 +178,13 @@ namespace Backend.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    SubjectDetailId = table.Column<int>(type: "int", nullable: false),
+                    SubjectDetailId = table.Column<int>(type: "int", nullable: true),
                     Level = table.Column<int>(type: "int", nullable: false),
                     PracticeCode = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Title = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Topic = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     ExpectOutput = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    LanguageProgrammingId = table.Column<int>(type: "int", nullable: false),
+                    LanguageProgrammingId = table.Column<int>(type: "int", nullable: true),
                     IsRequired = table.Column<bool>(type: "bit", nullable: false),
                     CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -201,14 +198,12 @@ namespace Backend.Migrations
                         name: "FK_Practices_ProgramingLanguages_LanguageProgrammingId",
                         column: x => x.LanguageProgrammingId,
                         principalTable: "ProgramingLanguages",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Practices_SubjectDetails_SubjectDetailId",
                         column: x => x.SubjectDetailId,
                         principalTable: "SubjectDetails",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -227,9 +222,9 @@ namespace Backend.Migrations
                     DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    DistrictId = table.Column<int>(type: "int", nullable: false),
-                    ProvinceId = table.Column<int>(type: "int", nullable: false),
-                    WardId = table.Column<int>(type: "int", nullable: false),
+                    DistrictId = table.Column<int>(type: "int", nullable: true),
+                    ProvinceId = table.Column<int>(type: "int", nullable: true),
+                    WardId = table.Column<int>(type: "int", nullable: true),
                     UserStatus = table.Column<int>(type: "int", nullable: false),
                     IsLocked = table.Column<bool>(type: "bit", nullable: false),
                     CertificateId = table.Column<int>(type: "int", nullable: true)
@@ -243,11 +238,20 @@ namespace Backend.Migrations
                         principalTable: "Certificates",
                         principalColumn: "Id");
                     table.ForeignKey(
+                        name: "FK_Users_Districts_DistrictId",
+                        column: x => x.DistrictId,
+                        principalTable: "Districts",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Users_Provinces_ProvinceId",
+                        column: x => x.ProvinceId,
+                        principalTable: "Provinces",
+                        principalColumn: "Id");
+                    table.ForeignKey(
                         name: "FK_Users_Wards_WardId",
                         column: x => x.WardId,
                         principalTable: "Wards",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -258,8 +262,8 @@ namespace Backend.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Input = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Output = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProgramingLanguageId = table.Column<int>(type: "int", nullable: false),
-                    PracticeId = table.Column<int>(type: "int", nullable: false)
+                    ProgramingLanguageId = table.Column<int>(type: "int", nullable: true),
+                    PracticeId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -268,14 +272,12 @@ namespace Backend.Migrations
                         name: "FK_TestCases_Practices_PracticeId",
                         column: x => x.PracticeId,
                         principalTable: "Practices",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_TestCases_ProgramingLanguages_ProgramingLanguageId",
                         column: x => x.ProgramingLanguageId,
                         principalTable: "ProgramingLanguages",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -311,7 +313,7 @@ namespace Backend.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ConfirmCode = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     ExpiryTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: true),
                     IsConfirm = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -321,8 +323,7 @@ namespace Backend.Migrations
                         name: "FK_ConfirmEmails_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -334,7 +335,7 @@ namespace Backend.Migrations
                     Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Introduce = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     ImageCourse = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    CreatorId = table.Column<int>(type: "int", nullable: false),
+                    CreatorId = table.Column<int>(type: "int", nullable: true),
                     Code = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     TotalCourseDuration = table.Column<int>(type: "int", nullable: false),
@@ -348,8 +349,7 @@ namespace Backend.Migrations
                         name: "FK_Courses_Users_CreatorId",
                         column: x => x.CreatorId,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -358,8 +358,8 @@ namespace Backend.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    SubjectDetailId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: true),
+                    SubjectDetailId = table.Column<int>(type: "int", nullable: true),
                     Question = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     NumberOfAnswers = table.Column<int>(type: "int", nullable: false),
                     CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -372,14 +372,12 @@ namespace Backend.Migrations
                         name: "FK_MakeQuestions_SubjectDetails_SubjectDetailId",
                         column: x => x.SubjectDetailId,
                         principalTable: "SubjectDetails",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_MakeQuestions_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -388,7 +386,7 @@ namespace Backend.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: true),
                     Image = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Content = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     Link = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
@@ -402,8 +400,7 @@ namespace Backend.Migrations
                         name: "FK_Notifications_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -412,8 +409,8 @@ namespace Backend.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    RoleId = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: true),
+                    RoleId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -422,14 +419,12 @@ namespace Backend.Migrations
                         name: "FK_Permissions_Roles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "Roles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Permissions_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -440,7 +435,7 @@ namespace Backend.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Token = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     ExpiryTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -449,8 +444,7 @@ namespace Backend.Migrations
                         name: "FK_RefreshTokens_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -459,8 +453,8 @@ namespace Backend.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    BlogId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
+                    BlogId = table.Column<int>(type: "int", nullable: true),
+                    UserId = table.Column<int>(type: "int", nullable: true),
                     Content = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     Edited = table.Column<bool>(type: "bit", nullable: false)
                 },
@@ -471,14 +465,12 @@ namespace Backend.Migrations
                         name: "FK_CommentBlogs_Blogs_BlogId",
                         column: x => x.BlogId,
                         principalTable: "Blogs",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_CommentBlogs_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -487,8 +479,8 @@ namespace Backend.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    BlogId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: true),
+                    BlogId = table.Column<int>(type: "int", nullable: true),
                     Unlike = table.Column<bool>(type: "bit", nullable: false),
                     CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: true)
@@ -500,14 +492,12 @@ namespace Backend.Migrations
                         name: "FK_LikeBlogs_Blogs_BlogId",
                         column: x => x.BlogId,
                         principalTable: "Blogs",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_LikeBlogs_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -516,12 +506,12 @@ namespace Backend.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    CourseId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: true),
+                    CourseId = table.Column<int>(type: "int", nullable: true),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     TradingCode = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    BillStatusId = table.Column<int>(type: "int", nullable: false)
+                    BillStatusId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -530,20 +520,17 @@ namespace Backend.Migrations
                         name: "FK_Bills_BillStatuses_BillStatusId",
                         column: x => x.BillStatusId,
                         principalTable: "BillStatuses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Bills_Courses_CourseId",
                         column: x => x.CourseId,
                         principalTable: "Courses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Bills_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -552,8 +539,8 @@ namespace Backend.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CourseId = table.Column<int>(type: "int", nullable: false),
-                    SubjectId = table.Column<int>(type: "int", nullable: false)
+                    CourseId = table.Column<int>(type: "int", nullable: true),
+                    SubjectId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -562,14 +549,12 @@ namespace Backend.Migrations
                         name: "FK_CourseSubjects_Courses_CourseId",
                         column: x => x.CourseId,
                         principalTable: "Courses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_CourseSubjects_Subjects_SubjectId",
                         column: x => x.SubjectId,
                         principalTable: "Subjects",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -578,9 +563,9 @@ namespace Backend.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    CourseId = table.Column<int>(type: "int", nullable: false),
-                    CurrentSubjectId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: true),
+                    CourseId = table.Column<int>(type: "int", nullable: true),
+                    CurrentSubjectId = table.Column<int>(type: "int", nullable: true),
                     IsFinished = table.Column<bool>(type: "bit", nullable: false),
                     RegisterTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PercentComplete = table.Column<int>(type: "int", nullable: false),
@@ -594,20 +579,17 @@ namespace Backend.Migrations
                         name: "FK_RegisterStudies_Courses_CourseId",
                         column: x => x.CourseId,
                         principalTable: "Courses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_RegisterStudies_Subjects_CurrentSubjectId",
                         column: x => x.CurrentSubjectId,
                         principalTable: "Subjects",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_RegisterStudies_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -616,8 +598,8 @@ namespace Backend.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    QuestionId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
+                    QuestionId = table.Column<int>(type: "int", nullable: true),
+                    UserId = table.Column<int>(type: "int", nullable: true),
                     Answer = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: true)
@@ -629,14 +611,12 @@ namespace Backend.Migrations
                         name: "FK_Answers_MakeQuestions_QuestionId",
                         column: x => x.QuestionId,
                         principalTable: "MakeQuestions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Answers_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -645,13 +625,13 @@ namespace Backend.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PracticeId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
+                    PracticeId = table.Column<int>(type: "int", nullable: true),
+                    UserId = table.Column<int>(type: "int", nullable: true),
                     HomeworkStatus = table.Column<int>(type: "int", nullable: false),
                     IsFinished = table.Column<bool>(type: "bit", nullable: false),
                     ActualOutput = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     DoneTime = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    RegisterStudyId = table.Column<int>(type: "int", nullable: false)
+                    RegisterStudyId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -660,20 +640,17 @@ namespace Backend.Migrations
                         name: "FK_DoHomeworks_Practices_PracticeId",
                         column: x => x.PracticeId,
                         principalTable: "Practices",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_DoHomeworks_RegisterStudies_RegisterStudyId",
                         column: x => x.RegisterStudyId,
                         principalTable: "RegisterStudies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_DoHomeworks_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -682,9 +659,9 @@ namespace Backend.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    RegisterStudyId = table.Column<int>(type: "int", nullable: false),
-                    CurrentSubjectId = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: true),
+                    RegisterStudyId = table.Column<int>(type: "int", nullable: true),
+                    CurrentSubjectId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -693,20 +670,17 @@ namespace Backend.Migrations
                         name: "FK_LearningProgresses_RegisterStudies_RegisterStudyId",
                         column: x => x.RegisterStudyId,
                         principalTable: "RegisterStudies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_LearningProgresses_Subjects_CurrentSubjectId",
                         column: x => x.CurrentSubjectId,
                         principalTable: "Subjects",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_LearningProgresses_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -715,8 +689,8 @@ namespace Backend.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DoHomeworkId = table.Column<int>(type: "int", nullable: false),
-                    TestCaseId = table.Column<int>(type: "int", nullable: false),
+                    DoHomeworkId = table.Column<int>(type: "int", nullable: true),
+                    TestCaseId = table.Column<int>(type: "int", nullable: true),
                     Result = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     RunTime = table.Column<double>(type: "float", nullable: false)
                 },
@@ -727,14 +701,12 @@ namespace Backend.Migrations
                         name: "FK_RunTestCases_DoHomeworks_DoHomeworkId",
                         column: x => x.DoHomeworkId,
                         principalTable: "DoHomeworks",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_RunTestCases_TestCases_TestCaseId",
                         column: x => x.TestCaseId,
                         principalTable: "TestCases",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -931,6 +903,16 @@ namespace Backend.Migrations
                 name: "IX_Users_CertificateId",
                 table: "Users",
                 column: "CertificateId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_DistrictId",
+                table: "Users",
+                column: "DistrictId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_ProvinceId",
+                table: "Users",
+                column: "ProvinceId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_WardId",

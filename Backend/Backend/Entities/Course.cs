@@ -17,7 +17,7 @@ namespace Backend.Entities
         [StringLength(255)]
         public string ImageCourse { get; set; }
 
-        public int CreatorId { get; set; }
+        public int? CreatorId { get; set; }
 
         [Required]
         [StringLength(50)]

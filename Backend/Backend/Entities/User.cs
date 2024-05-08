@@ -38,15 +38,17 @@ namespace Backend.Entities
         [StringLength(500)]
         public string Address { get; set; }
 
-        public int DistrictId { get; set; }
+        public int? DistrictId { get; set; }
 
-        public int ProvinceId { get; set; }
+        public int? ProvinceId { get; set; }
 
-        public int WardId { get; set; }
+        public int? WardId { get; set; }
 
         public UserStatus UserStatus { get; set; }
 
         public bool IsLocked { get; set; }
+        public District District { get; set; }
+        public Province Province { get; set; }
         public Ward Ward { get; set; }
 
         public List<Permission> Permissions { get; set; }

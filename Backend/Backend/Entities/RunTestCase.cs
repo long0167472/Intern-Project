@@ -7,9 +7,9 @@ namespace Backend.Entities
     {
         public int Id { get; set; }
 
-        public int DoHomeworkId { get; set; }
+        public int? DoHomeworkId { get; set; }
 
-        public int TestCaseId { get; set; }
+        public int? TestCaseId { get; set; }
 
         [StringLength(500)]
         public string Result { get; set; }

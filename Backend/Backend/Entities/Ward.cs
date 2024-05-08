@@ -7,7 +7,7 @@ namespace Backend.Entities
     {
         public int Id { get; set; }
 
-        public int DistrictId { get; set; }
+        public int? DistrictId { get; set; }
 
         [Required]
         [StringLength(255)]
