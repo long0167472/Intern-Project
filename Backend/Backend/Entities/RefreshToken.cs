@@ -16,5 +16,4 @@ namespace Backend.Entities
 
         public User User { get; set; }
     }
-
 }
