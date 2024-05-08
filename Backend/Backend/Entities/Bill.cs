@@ -7,9 +7,9 @@ namespace Backend.Entities
     {
         public int Id { get; set; }
 
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
 
-        public int CourseId { get; set; }
+        public int? CourseId { get; set; }
 
         public decimal Price { get; set; }
 
@@ -18,7 +18,7 @@ namespace Backend.Entities
 
         public DateTime CreateTime { get; set; }
 
-        public int BillStatusId { get; set; }
+        public int? BillStatusId { get; set; }
 
         public User User { get; set; }
 

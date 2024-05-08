@@ -7,9 +7,9 @@ namespace Backend.Entities
     {
         public int Id { get; set; }
 
-        public int PracticeId { get; set; }
+        public int? PracticeId { get; set; }
 
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
 
         public HomeworkStatus HomeworkStatus { get; set; }
 
@@ -20,7 +20,7 @@ namespace Backend.Entities
 
         public DateTime? DoneTime { get; set; }
 
-        public int RegisterStudyId { get; set; }
+        public int? RegisterStudyId { get; set; }
 
         public Practice Practice { get; set; }
 

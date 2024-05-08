@@ -38,13 +38,13 @@ namespace Backend.Migrations
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("QuestionId")
+                    b.Property<int?>("QuestionId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -64,10 +64,10 @@ namespace Backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("BillStatusId")
+                    b.Property<int?>("BillStatusId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CourseId")
+                    b.Property<int?>("CourseId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreateTime")
@@ -81,7 +81,7 @@ namespace Backend.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -161,7 +161,7 @@ namespace Backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("CertificateTypeId")
+                    b.Property<int?>("CertificateTypeId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -212,7 +212,7 @@ namespace Backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("BlogId")
+                    b.Property<int?>("BlogId")
                         .HasColumnType("int");
 
                     b.Property<string>("Content")
@@ -223,7 +223,7 @@ namespace Backend.Migrations
                     b.Property<bool>("Edited")
                         .HasColumnType("bit");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -254,7 +254,7 @@ namespace Backend.Migrations
                     b.Property<bool>("IsConfirm")
                         .HasColumnType("bit");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -277,7 +277,7 @@ namespace Backend.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("CreatorId")
+                    b.Property<int?>("CreatorId")
                         .HasColumnType("int");
 
                     b.Property<string>("ImageCourse")
@@ -322,10 +322,10 @@ namespace Backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("CourseId")
+                    b.Property<int?>("CourseId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SubjectId")
+                    b.Property<int?>("SubjectId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -382,13 +382,13 @@ namespace Backend.Migrations
                     b.Property<bool>("IsFinished")
                         .HasColumnType("bit");
 
-                    b.Property<int>("PracticeId")
+                    b.Property<int?>("PracticeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("RegisterStudyId")
+                    b.Property<int?>("RegisterStudyId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -410,13 +410,13 @@ namespace Backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("CurrentSubjectId")
+                    b.Property<int?>("CurrentSubjectId")
                         .HasColumnType("int");
 
-                    b.Property<int>("RegisterStudyId")
+                    b.Property<int?>("RegisterStudyId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -438,7 +438,7 @@ namespace Backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("BlogId")
+                    b.Property<int?>("BlogId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreateTime")
@@ -450,7 +450,7 @@ namespace Backend.Migrations
                     b.Property<DateTime?>("UpdateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -481,13 +481,13 @@ namespace Backend.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
-                    b.Property<int>("SubjectDetailId")
+                    b.Property<int?>("SubjectDetailId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -528,7 +528,7 @@ namespace Backend.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -546,10 +546,10 @@ namespace Backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("RoleId")
+                    b.Property<int?>("RoleId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -583,7 +583,7 @@ namespace Backend.Migrations
                     b.Property<bool>("IsRequired")
                         .HasColumnType("bit");
 
-                    b.Property<int>("LanguageProgrammingId")
+                    b.Property<int?>("LanguageProgrammingId")
                         .HasColumnType("int");
 
                     b.Property<int>("Level")
@@ -597,7 +597,7 @@ namespace Backend.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("SubjectDetailId")
+                    b.Property<int?>("SubjectDetailId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -674,7 +674,7 @@ namespace Backend.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -692,10 +692,10 @@ namespace Backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("CourseId")
+                    b.Property<int?>("CourseId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CurrentSubjectId")
+                    b.Property<int?>("CurrentSubjectId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("DoneTime")
@@ -713,7 +713,7 @@ namespace Backend.Migrations
                     b.Property<DateTime>("RegisterTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -758,7 +758,7 @@ namespace Backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("DoHomeworkId")
+                    b.Property<int?>("DoHomeworkId")
                         .HasColumnType("int");
 
                     b.Property<string>("Result")
@@ -769,7 +769,7 @@ namespace Backend.Migrations
                     b.Property<double>("RunTime")
                         .HasColumnType("float");
 
-                    b.Property<int>("TestCaseId")
+                    b.Property<int?>("TestCaseId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -831,7 +831,7 @@ namespace Backend.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<int>("SubjectId")
+                    b.Property<int?>("SubjectId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -857,10 +857,10 @@ namespace Backend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PracticeId")
+                    b.Property<int?>("PracticeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProgramingLanguageId")
+                    b.Property<int?>("ProgramingLanguageId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -899,7 +899,7 @@ namespace Backend.Migrations
                     b.Property<DateTime?>("DateOfBirth")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("DistrictId")
+                    b.Property<int?>("DistrictId")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
@@ -923,7 +923,7 @@ namespace Backend.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<int>("ProvinceId")
+                    b.Property<int?>("ProvinceId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdateTime")
@@ -937,7 +937,7 @@ namespace Backend.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<int>("WardId")
+                    b.Property<int?>("WardId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -961,7 +961,7 @@ namespace Backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("DistrictId")
+                    b.Property<int?>("DistrictId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -980,15 +980,11 @@ namespace Backend.Migrations
                 {
                     b.HasOne("Backend.Entities.MakeQuestion", "Question")
                         .WithMany()
-                        .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("QuestionId");
 
                     b.HasOne("Backend.Entities.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Question");
 
@@ -999,21 +995,15 @@ namespace Backend.Migrations
                 {
                     b.HasOne("Backend.Entities.BillStatus", "BillStatus")
                         .WithMany()
-                        .HasForeignKey("BillStatusId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BillStatusId");
 
                     b.HasOne("Backend.Entities.Course", "Course")
                         .WithMany()
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CourseId");
 
                     b.HasOne("Backend.Entities.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("BillStatus");
 
@@ -1037,9 +1027,7 @@ namespace Backend.Migrations
                 {
                     b.HasOne("Backend.Entities.CertificateType", "CertificateType")
                         .WithMany("Certificates")
-                        .HasForeignKey("CertificateTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CertificateTypeId");
 
                     b.Navigation("CertificateType");
                 });
@@ -1048,15 +1036,11 @@ namespace Backend.Migrations
                 {
                     b.HasOne("Backend.Entities.Blog", "Blog")
                         .WithMany("Comments")
-                        .HasForeignKey("BlogId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BlogId");
 
                     b.HasOne("Backend.Entities.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Blog");
 
@@ -1067,9 +1051,7 @@ namespace Backend.Migrations
                 {
                     b.HasOne("Backend.Entities.User", "User")
                         .WithMany("ConfirmEmails")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });
@@ -1078,9 +1060,7 @@ namespace Backend.Migrations
                 {
                     b.HasOne("Backend.Entities.User", "Creator")
                         .WithMany()
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatorId");
 
                     b.Navigation("Creator");
                 });
@@ -1089,15 +1069,11 @@ namespace Backend.Migrations
                 {
                     b.HasOne("Backend.Entities.Course", "Course")
                         .WithMany("CourseSubjects")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CourseId");
 
                     b.HasOne("Backend.Entities.Subject", "Subject")
                         .WithMany()
-                        .HasForeignKey("SubjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SubjectId");
 
                     b.Navigation("Course");
 
@@ -1119,21 +1095,15 @@ namespace Backend.Migrations
                 {
                     b.HasOne("Backend.Entities.Practice", "Practice")
                         .WithMany()
-                        .HasForeignKey("PracticeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PracticeId");
 
                     b.HasOne("Backend.Entities.RegisterStudy", "RegisterStudy")
                         .WithMany("DoHomeworks")
-                        .HasForeignKey("RegisterStudyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RegisterStudyId");
 
                     b.HasOne("Backend.Entities.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Practice");
 
@@ -1146,21 +1116,15 @@ namespace Backend.Migrations
                 {
                     b.HasOne("Backend.Entities.Subject", "CurrentSubject")
                         .WithMany()
-                        .HasForeignKey("CurrentSubjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CurrentSubjectId");
 
                     b.HasOne("Backend.Entities.RegisterStudy", "RegisterStudy")
                         .WithMany()
-                        .HasForeignKey("RegisterStudyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RegisterStudyId");
 
                     b.HasOne("Backend.Entities.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("CurrentSubject");
 
@@ -1173,15 +1137,11 @@ namespace Backend.Migrations
                 {
                     b.HasOne("Backend.Entities.Blog", "Blog")
                         .WithMany("Likes")
-                        .HasForeignKey("BlogId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BlogId");
 
                     b.HasOne("Backend.Entities.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Blog");
 
@@ -1192,15 +1152,11 @@ namespace Backend.Migrations
                 {
                     b.HasOne("Backend.Entities.SubjectDetail", "SubjectDetail")
                         .WithMany()
-                        .HasForeignKey("SubjectDetailId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SubjectDetailId");
 
                     b.HasOne("Backend.Entities.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("SubjectDetail");
 
@@ -1211,9 +1167,7 @@ namespace Backend.Migrations
                 {
                     b.HasOne("Backend.Entities.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });
@@ -1222,15 +1176,11 @@ namespace Backend.Migrations
                 {
                     b.HasOne("Backend.Entities.Role", "Role")
                         .WithMany("Permissions")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RoleId");
 
                     b.HasOne("Backend.Entities.User", "User")
                         .WithMany("Permissions")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Role");
 
@@ -1241,15 +1191,11 @@ namespace Backend.Migrations
                 {
                     b.HasOne("Backend.Entities.ProgramingLanguage", "LanguageProgramming")
                         .WithMany()
-                        .HasForeignKey("LanguageProgrammingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LanguageProgrammingId");
 
                     b.HasOne("Backend.Entities.SubjectDetail", "SubjectDetail")
                         .WithMany()
-                        .HasForeignKey("SubjectDetailId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SubjectDetailId");
 
                     b.Navigation("LanguageProgramming");
 
@@ -1260,9 +1206,7 @@ namespace Backend.Migrations
                 {
                     b.HasOne("Backend.Entities.User", "User")
                         .WithMany("RefreshTokens")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });
@@ -1271,21 +1215,15 @@ namespace Backend.Migrations
                 {
                     b.HasOne("Backend.Entities.Course", "Course")
                         .WithMany("RegisterStudies")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CourseId");
 
                     b.HasOne("Backend.Entities.Subject", "CurrentSubject")
                         .WithMany()
-                        .HasForeignKey("CurrentSubjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CurrentSubjectId");
 
                     b.HasOne("Backend.Entities.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Course");
 
@@ -1298,15 +1236,11 @@ namespace Backend.Migrations
                 {
                     b.HasOne("Backend.Entities.DoHomework", "DoHomework")
                         .WithMany()
-                        .HasForeignKey("DoHomeworkId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DoHomeworkId");
 
                     b.HasOne("Backend.Entities.TestCase", "TestCase")
                         .WithMany()
-                        .HasForeignKey("TestCaseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TestCaseId");
 
                     b.Navigation("DoHomework");
 
@@ -1317,9 +1251,7 @@ namespace Backend.Migrations
                 {
                     b.HasOne("Backend.Entities.Subject", "Subject")
                         .WithMany()
-                        .HasForeignKey("SubjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SubjectId");
 
                     b.Navigation("Subject");
                 });
@@ -1328,15 +1260,11 @@ namespace Backend.Migrations
                 {
                     b.HasOne("Backend.Entities.Practice", "Practice")
                         .WithMany()
-                        .HasForeignKey("PracticeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PracticeId");
 
                     b.HasOne("Backend.Entities.ProgramingLanguage", "ProgramingLanguage")
                         .WithMany()
-                        .HasForeignKey("ProgramingLanguageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProgramingLanguageId");
 
                     b.Navigation("Practice");
 
@@ -1351,21 +1279,15 @@ namespace Backend.Migrations
 
                     b.HasOne("Backend.Entities.District", "District")
                         .WithMany()
-                        .HasForeignKey("DistrictId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DistrictId");
 
                     b.HasOne("Backend.Entities.Province", "Province")
                         .WithMany()
-                        .HasForeignKey("ProvinceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProvinceId");
 
                     b.HasOne("Backend.Entities.Ward", "Ward")
                         .WithMany()
-                        .HasForeignKey("WardId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("WardId");
 
                     b.Navigation("District");
 
@@ -1378,9 +1300,7 @@ namespace Backend.Migrations
                 {
                     b.HasOne("Backend.Entities.District", "District")
                         .WithMany("Wards")
-                        .HasForeignKey("DistrictId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DistrictId");
 
                     b.Navigation("District");
                 });

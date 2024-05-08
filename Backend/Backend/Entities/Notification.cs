@@ -7,7 +7,7 @@ namespace Backend.Entities
     {
         public int Id { get; set; }
 
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
 
         [StringLength(255)]
         public string Image { get; set; }

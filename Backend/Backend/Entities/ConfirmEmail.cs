@@ -12,7 +12,7 @@ namespace Backend.Entities
 
         public DateTime ExpiryTime { get; set; }
 
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
 
         public bool IsConfirm { get; set; }
 

@@ -6,7 +6,7 @@ namespace Backend.Entities
     {
         public int Id { get; set; }
 
-        public int CertificateTypeId { get; set; }
+        public int? CertificateTypeId { get; set; }
 
         [Required]
         [StringLength(255)]

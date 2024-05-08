@@ -7,11 +7,11 @@ namespace Backend.Entities
     {
         public int Id { get; set; }
 
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
 
-        public int RegisterStudyId { get; set; }
+        public int? RegisterStudyId { get; set; }
 
-        public int CurrentSubjectId { get; set; }
+        public int? CurrentSubjectId { get; set; }
 
         public User User { get; set; }
 

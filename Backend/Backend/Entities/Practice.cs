@@ -7,7 +7,7 @@ namespace Backend.Entities
     {
         public int Id { get; set; }
 
-        public int SubjectDetailId { get; set; }
+        public int? SubjectDetailId { get; set; }
 
         public PracticeLevel Level { get; set; }
 
@@ -25,7 +25,7 @@ namespace Backend.Entities
         [StringLength(500)]
         public string ExpectOutput { get; set; }
 
-        public int LanguageProgrammingId { get; set; }
+        public int? LanguageProgrammingId { get; set; }
 
         public bool IsRequired { get; set; }
 
