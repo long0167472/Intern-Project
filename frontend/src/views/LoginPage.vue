@@ -12,14 +12,14 @@
                     <v-row align="center" justify="center">
                       <v-col cols="12" sm="8">
                         <v-text-field
-                          v-model="email"
-                          label="Email"
+                          v-model="Username"
+                          label="Username"
                           outlined
                           dense
                           class="mt-5"
                           bg-color="white"
                           color="blue"
-                          :rules="emailRules"
+                          :rules="UsernameRules"
                         >
                         </v-text-field>
 
@@ -66,7 +66,13 @@
                             Forgot password ?
                           </p>
                         </div>
-                        <v-btn rounded color="blue" dark block tile
+                        <v-btn
+                          rounded
+                          color="blue"
+                          dark
+                          block
+                          tile
+                          @click="login"
                           >Log in</v-btn
                         >
 
@@ -74,16 +80,18 @@
                           Or Log in using
                         </h5>
                         <div class="d-flex justify-center mb-6">
-                          <v-btn
-                            depressed
-                            outlined
-                            color="gray"
-                            @click="loginWithGoogle"
-                            class="mx-3 btn"
-                          >
-                            <v-icon color="red" size="30">mdi-google</v-icon>
-                          </v-btn>
-                          <v-btn
+                          <GoogleLogin :callback="handleGoogleLogin">
+                            <button>
+                              <div class="d-flex justify-center my-btn">
+                                <v-icon size="25">mdi-google</v-icon>
+                                <span class="mt-1 mx-2"
+                                  >Sign Up with Google</span
+                                >
+                              </div>
+                            </button>
+                          </GoogleLogin>
+
+                          <!-- <v-btn
                             depressed
                             outlined
                             color="gray"
@@ -91,7 +99,7 @@
                             class="btn"
                           >
                             <v-icon color="blue" size="30">mdi-facebook</v-icon>
-                          </v-btn>
+                          </v-btn> -->
                         </div>
                       </v-col>
                     </v-row>
@@ -160,6 +168,16 @@
                           </v-col>
                         </v-row>
                         <v-text-field
+                          v-model="Username"
+                          label="Username"
+                          outlined
+                          dense
+                          class="mt-5"
+                          bg-color="white"
+                          color="blue"
+                          :rules="UsernameRules"
+                        ></v-text-field>
+                        <v-text-field
                           v-model="email"
                           label="Email"
                           bg-color="white"
@@ -196,7 +214,7 @@
                             depressed
                             outlined
                             color="gray"
-                            @click="loginWithGoogle"
+                            @click="loginGoogle"
                             class="mx-3 btn"
                           >
                             <v-icon color="red" size="30">mdi-google</v-icon>
@@ -225,15 +243,23 @@
 </template>
 
 <script>
+import axios from "axios";
+import { mapMutations } from "vuex";
 export default {
   data: () => ({
     step: 1,
     passwork: "",
     showPassword: false,
     checked: false,
+
     rulesPassWork: [
       (v) => !!v || "Mật khẩu không được để trống",
       (v) => v.length > 6 || "Mật khẩu không được ít hơn 6 ký tự",
+    ],
+    Username: "",
+    UsernameRules: [
+      (v) => !!v || "Tên đăng nhập là bắt buộc",
+      (v) => v.length >= 6 || "Tên đăng nhập phải có ít nhất 6 ký tự",
     ],
     email: "",
     emailRules: [
@@ -252,11 +278,47 @@ export default {
     ],
   }),
   methods: {
-    loginWithGoogle() {
-      window.location.href = "https://accounts.google.com/ServiceLogin";
+    ...mapMutations("auth", ["login"]), // Ánh xạ mutation login từ Vuex
+
+    async login() {
+      try {
+        const response = await axios.post("/user/login", {
+          username: this.username,
+          password: this.password,
+        });
+
+        if (response.data.success) {
+          // Đăng nhập thành công
+          const user = response.data.user; // Lấy thông tin người dùng (nếu có)
+          this.login(user); // Gọi mutation login từ Vuex để cập nhật trạng thái
+          this.$router.push({ name: "home" });
+        } else {
+          // Đăng nhập thất bại
+          alert("Tên đăng nhập hoặc mật khẩu không hợp lệ");
+        }
+      } catch (error) {
+        console.error("Error logging in:", error);
+        // Xử lý lỗi chi tiết hơn (ví dụ: hiển thị thông báo lỗi cụ thể cho người dùng)
+      }
     },
-    loginWithFacebook() {
-      window.location.href = "https://www.facebook.com/login";
+
+    async handleGoogleLogin(response) {
+      // ... (Xử lý đăng nhập Google)
+      if (response.code) {
+        try {
+          // Lấy thông tin người dùng từ Google
+          const user = await this.fetchGoogleUserInfo(response.code);
+          this.login(user); // Cập nhật trạng thái và lưu thông tin người dùng
+          this.$router.push({ name: "home" });
+          alert("Đăng nhập thành công");
+          // ...
+        } catch (error) {
+          console.error("Error fetching Google user info:", error);
+          alert("Đăng nhập thất bại 14");
+        }
+      } else {
+        alert("Đăng nhập thất bại");
+      }
     },
   },
 };
@@ -271,7 +333,12 @@ export default {
 .custom-blue-bg {
   background-color: #009fd9;
 }
-.btn:hover {
-  transform: scale(1.15);
+
+.my-btn {
+  color: #ffffff;
+  background-color: rgb(255, 0, 0);
+  font-weight: 600;
+  padding: 5px 15px;
+  border-radius: 10px;
 }
 </style>
